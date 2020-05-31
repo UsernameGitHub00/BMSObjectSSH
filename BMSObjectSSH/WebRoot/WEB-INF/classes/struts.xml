@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+    <!-- constant 配置 -->
+    <!-- 用于设置默认的本地编码 -->
+    <constant name="struts.i18n.encoding" value="UTF-8" />
+    <!-- 指定请求后缀为.action，指定多个请求后缀用逗号分隔 -->
+    <constant name="struts.action.extension" value="action" />
+    <!--设置浏览器是否缓存静态内容，建议：开发阶段关闭，运行时开启 -->
+    <constant name="struts.serve.static.browserCache" value="false" />
+    <!--当struts.xml配置文件修改后，系统是否重新加载该文件，开发阶段打开此功能 -->
+    <constant name="struts.configuration.xml.reload" value="true" />
+    <!-- 开发提示：出错时打印更详细的信息，开发阶段打开此功能 -->
+    <constant name="struts.devMode" value="true" />
+    
+    <!-- Strut2交给spring管理 -->
+    <!-- struts2框架就会把bean转发给spring来创建，装配，注入。但是bean创建完成之后，还是由struts容器来管理其生命周期 -->
+    <constant name="struts.objectFactory" value="spring" />
+    
+    <package name="user" namespace="/" extends="struts-default">
+    	<result-types>
+			<result-type name="json" class="org.apache.struts2.json.JSONResult"></result-type>
+		</result-types>
+		
+        <action name="loginAction" class="com.wuchuan.web.LoginAction">
+            <result name="toLogin">/jsp/login.jsp</result>
+            <!-- <result name="success" type="redirectAction">
+                <param name="namespace">/</param>
+                <param name="actionName">loginAction</param>目标Action的名称
+                <param name="method">list</param>重定向要执行的方法
+            </result> -->
+            <result name="message" type="json">
+            	<param name="root">message</param>
+			</result>
+            <result name="toList" type="json">
+            	<param name="root">bsgrid</param>
+			</result>
+            <result name="success">/jsp/main.jsp</result>
+            <result name="error">/jsp/login.jsp</result>
+            <result name="toIndex">index.jsp</result>
+        </action>
+        
+        <action name="mainAction" class="com.wuchuan.web.MainAction">
+            <result name="toLogin">/jsp/login.jsp</result>
+            <result name="message" type="json">
+            	<param name="root">message</param>
+			</result>
+			<result name="selectUserInfor" type="json">
+            	<param name="root">userinfor</param>
+			</result>
+            <result name="success">/jsp/myInformation.jsp</result>
+            <result name="error">/jsp/login.jsp</result>
+            <result name="index">index.jsp</result>
+            <result name="main">/jsp/main.jsp</result>
+        </action>
+        
+        <action name="bookTypeAction" class="com.wuchuan.web.BookTypeAction">
+            <result name="bookTypeList" type="json">
+            	<param name="root">bsgrid</param>
+			</result>
+			<result name="selectMessage" type="json">
+            	<param name="root">bookType</param>
+			</result>
+			<result name="treeDate" type="json">
+            	<param name="root">listBookType</param>
+			</result>
+			<result name="message" type="json">
+            	<param name="root">message</param>
+			</result>
+        </action>
+        
+        <action name="bookMessageAction" class="com.wuchuan.web.BookMessageAction">
+            <result name="bsBookMessage" type="json">
+            	<param name="root">bsgrid</param>
+			</result>
+			<result name="selectBookState" type="json">
+            	<param name="root">listBookState</param>
+			</result>
+			<result name="selectBookAll" type="json">
+            	<param name="root">listBook</param>
+			</result>
+			<result name="selectBookStateById" type="json">
+            	<param name="root">bookState</param>
+			</result>
+			<result name="message" type="json">
+            	<param name="root">message</param>
+			</result>
+			<result name="book" type="json">
+            	<param name="root">book</param>
+			</result>
+			<interceptor-ref name="fileUpload">
+				<!-- maximumSize[可选] 这个拦截器设置上传到action的文件的最大大小（以字节单位），默认2MB -->
+				<param name="maximumSize">104857600</param>
+				<!-- allowedType过滤上传的文件类型 -->
+				<!-- <param name="allowedTypes">video/mp4,audio/x‐mpeg</param> -->
+				<!--  allowedExtensions 过滤上传的文件的扩展名 -->
+				<param name="allowedExtensions">jpg,jpeg,png</param>
+				</interceptor-ref>
+				<!-- 默认拦截 ！！千万不要忘记！！ -->
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+        </action>
+        
+        <action name="bookBrOrReAction" class="com.wuchuan.web.BookBrOrReAction">
+            <result name="selectBorrow" type="json">
+            	<param name="root">bsgrid</param>
+			</result>
+			<result name="message" type="json">
+            	<param name="root">message</param>
+			</result>
+        </action>
+        
+        <action name="bookBorrowCardAction" class="com.wuchuan.web.BookBorrowCard">
+            <result name="bsUserMessage" type="json">
+            	<param name="root">bsgrid</param>
+			</result>
+			<result name="message" type="json">
+            	<param name="root">message</param>
+			</result>
+        </action>
+    </package>
+</struts>
