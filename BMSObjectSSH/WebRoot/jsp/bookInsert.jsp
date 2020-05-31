@@ -27,9 +27,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body>
 <div class="layui-form" lay-filter="layuiadmin-form-useradmin"
 	id="layuiadmin-form-useradmin" style="padding:5px 0 0 0;">
-	
+	<input name="" id="bookid" style="display:none;">
 	<form class="layui-form" action="${ctx}/bookMessageAction!insertBook.action" method="POST" enctype="multipart/form-data" id="from">
-		<input name="book_id" id="bookid" style="display:none;">
 		<div>
             <div style="padding:5px 150px;">
                 <img src="" alt="" width="120" height="150" id="IimgPicture" style="display:none;" />
