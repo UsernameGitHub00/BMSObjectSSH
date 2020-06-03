@@ -48,7 +48,6 @@ public class BookBorrowCard extends ActionSupport implements ModelDriven<UserInf
 		if (pageSize!=null &&Tools.isNum(pageSize)) {
 			 pageSizeStr=Integer.parseInt(pageSize);
 		}
-		
 		int startIndex=(currentPage-1)*pageSizeStr;
 		listUserInfor = userService.bsUserMessage(startIndex, pageSizeStr, userInfor.getUser_name(), userInfor.getNumber(),userInfor.getSex(),userInfor.getIs_borrow_card(),type);
 	    int totalRow=userService.getTotalRow(userInfor.getUser_name(), userInfor.getNumber(),userInfor.getSex(),userInfor.getIs_borrow_card(),type);
