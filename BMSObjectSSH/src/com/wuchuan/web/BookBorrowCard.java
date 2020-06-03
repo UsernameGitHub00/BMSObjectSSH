@@ -11,6 +11,7 @@ import com.wuchuan.service.IUserService;
 import com.wuchuan.util.Tools;
 import com.wuchuan.vo.Bsgrid;
 
+//借阅证管理
 public class BookBorrowCard extends ActionSupport implements ModelDriven<UserInformation>{
 
 	/**
