@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 <head>
 <base href="<%=basePath%>">
-	<title>图书信息</title>
+	<title>所有图书</title>
   	<link rel="stylesheet" type="text/css" href="${ctx}/Content/res/static/css/main.css">
 	<link rel="stylesheet" type="text/css" href="${ctx}/Content/res/layui/css/layui.css">
   	<script type="text/javascript" src="${ctx}/Content/res/layui/layui.js"></script>
